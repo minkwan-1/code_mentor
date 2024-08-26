@@ -1,7 +1,7 @@
 export const mentorsData = [
   {
     id: 1,
-    name: "홍길동",
+    name: "원민관",
     experience: "10년 이상의 프론트엔드 개발 경험",
     techStack: ["JavaScript", "React", "TypeScript"],
     description:

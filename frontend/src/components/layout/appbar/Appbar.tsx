@@ -34,7 +34,7 @@ const Appbar = () => {
           <NavButton label="코드리뷰" to="/review" />
         </NavigationWrapper>
         {/* Login */}
-        <LoginButton />
+        <LoginButton to="/auth" />
       </AppbarElementWrapper>
     </Box>
   );

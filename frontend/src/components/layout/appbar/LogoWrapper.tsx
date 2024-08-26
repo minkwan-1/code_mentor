@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 interface LogoWrapperProps {
-  to: string; // 'to' prop의 타입을 명시적으로 'string'으로 정의
+  to: string;
 }
 
 function LogoWrapper({ to }: LogoWrapperProps) {
