@@ -8,9 +8,10 @@ function LogoWrapper() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
-      COMENTOR
+      🌿TORTEE🌿
     </Box>
   );
 }

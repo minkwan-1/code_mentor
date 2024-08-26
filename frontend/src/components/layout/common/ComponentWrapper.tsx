@@ -1,11 +1,15 @@
-import { Box } from "@mui/material";
+import { Box, BoxProps } from "@mui/material";
 import { ReactNode } from "react";
 
-interface ComponentWrapperProps {
+interface ComponentWrapperProps extends BoxProps {
   children: ReactNode;
 }
 
-const ComponentWrapper = ({ children }: ComponentWrapperProps) => {
+const ComponentWrapper = ({
+  children,
+  sx,
+  ...props
+}: ComponentWrapperProps) => {
   return (
     <Box
       sx={{
@@ -15,7 +19,9 @@ const ComponentWrapper = ({ children }: ComponentWrapperProps) => {
         flexDirection: "column",
         margin: "0 auto",
         padding: "0px 20px",
+        ...sx,
       }}
+      {...props}
     >
       {children}
     </Box>

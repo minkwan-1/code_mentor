@@ -9,8 +9,9 @@ function LoginButton() {
         justifyContent: "center",
         alignItems: "center",
         fontWeight: "bold",
-        color: "#b0b0b0",
+        color: "black",
         fontSize: "17px",
+        cursor: "pointer",
       }}
     >
       로그인
