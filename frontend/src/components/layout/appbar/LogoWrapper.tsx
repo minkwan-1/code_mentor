@@ -1,6 +1,17 @@
 import { Box } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-function LogoWrapper() {
+interface LogoWrapperProps {
+  to: string; // 'to' prop의 타입을 명시적으로 'string'으로 정의
+}
+
+function LogoWrapper({ to }: LogoWrapperProps) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(to);
+  };
+
   return (
     <Box
       sx={{
@@ -10,6 +21,7 @@ function LogoWrapper() {
         alignItems: "center",
         cursor: "pointer",
       }}
+      onClick={handleClick}
     >
       🌿TORTEE🌿
     </Box>

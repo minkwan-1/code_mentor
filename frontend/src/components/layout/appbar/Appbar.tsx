@@ -3,9 +3,9 @@ import {
   AppbarElementWrapper,
   LogoWrapper,
   NavigationWrapper,
-  NavButton,
   LoginButton,
 } from "./index";
+import NavButton from "./NavButton";
 
 const Appbar = () => {
   return (
@@ -24,14 +24,14 @@ const Appbar = () => {
       }}
     >
       <AppbarElementWrapper>
-        {/*Logo */}
-        <LogoWrapper />
+        {/* Logo */}
+        <LogoWrapper to="/" />
         {/* Navigation */}
         <NavigationWrapper>
-          <NavButton label="멘토찾기" />
-          <NavButton label="멘티찾기" />
-          <NavButton label="취업사례" />
-          <NavButton label="코드리뷰" />
+          <NavButton label="멘토찾기" to="/mentor" />
+          <NavButton label="멘티찾기" to="/mentee" />
+          <NavButton label="취업사례" to="/career" />
+          <NavButton label="코드리뷰" to="/review" />
         </NavigationWrapper>
         {/* Login */}
         <LoginButton />
