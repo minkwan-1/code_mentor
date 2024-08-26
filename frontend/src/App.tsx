@@ -1,11 +1,11 @@
-import "./reset.css";
-import { PageContainer, ComponentWrapper } from "./components/layout/common";
+import { Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 
 const App = () => {
   return (
-    <PageContainer>
-      <ComponentWrapper>레이아웃 체크</ComponentWrapper>
-    </PageContainer>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+    </Routes>
   );
 };
 
