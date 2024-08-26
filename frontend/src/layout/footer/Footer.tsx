@@ -1,7 +1,17 @@
-import React from "react";
+import { Box } from "@mui/material";
 
-function Footer() {
-  return <div>푸터</div>;
-}
+const Footer = () => {
+  return (
+    <Box
+      sx={{
+        width: "100%",
+        borderTop: "1px solid gray",
+        height: "100px",
+      }}
+    >
+      푸터
+    </Box>
+  );
+};
 
 export default Footer;

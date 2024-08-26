@@ -1,7 +1,11 @@
-import React from "react";
+import { PageContainer, ComponentWrapper } from "./layout/common";
 
-function App() {
-  return <div>doq</div>;
-}
+const App = () => {
+  return (
+    <PageContainer>
+      <ComponentWrapper>레이아웃 체크</ComponentWrapper>
+    </PageContainer>
+  );
+};
 
 export default App;
