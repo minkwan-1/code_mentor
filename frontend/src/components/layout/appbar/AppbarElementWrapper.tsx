@@ -16,7 +16,7 @@ function AppbarElementWrapper({
         display: "flex",
         margin: "0 auto",
         justifyContent: "space-between",
-        padding: "0px 12px",
+        padding: "0px 20px",
       }}
     >
       {children}

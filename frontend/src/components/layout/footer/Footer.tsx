@@ -13,7 +13,7 @@ const Footer = () => {
     >
       <Container maxWidth="lg">
         <Grid container spacing={4}>
-          {/* Company Info Section */}
+          {/* CompanyInfo Section */}
           <Grid item xs={12} sm={6} md={3}>
             <Box
               sx={{
@@ -32,13 +32,13 @@ const Footer = () => {
               </Typography>
               <Typography variant="body2">
                 저희는 전문적인 멘토링 서비스를 제공하는 플랫폼입니다. 경험이
-                풍부한 개발자와 연결하여 기술을 향상시키는 것을 목표로 하고
+                풍부한 개발자와 연결되어 끊임없이 성장하는 것을 목표로 하고
                 있습니다.
               </Typography>
             </Box>
           </Grid>
 
-          {/* Quick Links Section */}
+          {/* QuickLinks Section */}
           <Grid item xs={12} sm={6} md={3}>
             <Box
               sx={{
@@ -62,7 +62,7 @@ const Footer = () => {
             </Box>
           </Grid>
 
-          {/* Contact Info Section */}
+          {/* Contact Section */}
           <Grid item xs={12} sm={6} md={3}>
             <Box
               sx={{
@@ -86,7 +86,7 @@ const Footer = () => {
             </Box>
           </Grid>
 
-          {/* Social Media Section */}
+          {/* SocialMedia Section */}
           <Grid item xs={12} sm={6} md={3}>
             <Box
               sx={{
@@ -135,6 +135,7 @@ const Footer = () => {
             </Box>
           </Grid>
         </Grid>
+        {/* Copyright Section */}
         <Box
           sx={{
             textAlign: "center",
