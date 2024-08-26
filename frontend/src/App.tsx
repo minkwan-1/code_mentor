@@ -1,4 +1,5 @@
-import { PageContainer, ComponentWrapper } from "./layout/common";
+import "./reset.css";
+import { PageContainer, ComponentWrapper } from "./components/layout/common";
 
 const App = () => {
   return (
