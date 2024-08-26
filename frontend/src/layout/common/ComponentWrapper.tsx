@@ -1,7 +1,25 @@
-import React from "react";
+import { Box } from "@mui/material";
+import { ReactNode } from "react";
 
-function ComponentWrapper() {
-  return <div>컴포넌트 래퍼</div>;
+interface ComponentWrapperProps {
+  children: ReactNode;
 }
+
+const ComponentWrapper = ({ children }: ComponentWrapperProps) => {
+  return (
+    <Box
+      sx={{
+        maxWidth: "1200px",
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        margin: "0 auto",
+        padding: "0px 20px",
+      }}
+    >
+      {children}
+    </Box>
+  );
+};
 
 export default ComponentWrapper;
