@@ -5,6 +5,8 @@ import CareerCasePage from "./CareerCasePage";
 import MenteePage from "./MenteePage";
 import CodeReviewPage from "./CodeReviewPage";
 import AuthPage from "./AuthPage";
+import MentorAddPage from "./MentorAddPage";
+import MenteeAddPage from "./MenteeAddPage";
 
 export {
   LandingPage,
@@ -14,4 +16,6 @@ export {
   MenteePage,
   CodeReviewPage,
   AuthPage,
+  MentorAddPage,
+  MenteeAddPage,
 };

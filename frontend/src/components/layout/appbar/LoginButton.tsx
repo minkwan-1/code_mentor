@@ -9,6 +9,7 @@ function LoginButton({ to }: LoginButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     navigate(to);
   };
 

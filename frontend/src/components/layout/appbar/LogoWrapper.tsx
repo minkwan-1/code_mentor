@@ -9,6 +9,7 @@ function LogoWrapper({ to }: LogoWrapperProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     navigate(to);
   };
 

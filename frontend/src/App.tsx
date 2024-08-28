@@ -7,6 +7,8 @@ import {
   MenteePage,
   CodeReviewPage,
   AuthPage,
+  MentorAddPage,
+  MenteeAddPage,
 } from "./pages";
 
 const App = () => {
@@ -19,6 +21,8 @@ const App = () => {
       <Route path="/review" element={<CodeReviewPage />} />
       <Route path="/career" element={<CareerCasePage />} />
       <Route path="/auth" element={<AuthPage />} />
+      <Route path="/mentor_add" element={<MentorAddPage />} />
+      <Route path="/mentee_add" element={<MenteeAddPage />} />
     </Routes>
   );
 };

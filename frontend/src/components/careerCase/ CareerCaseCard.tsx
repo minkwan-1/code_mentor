@@ -55,7 +55,7 @@ const CareerCaseCard: React.FC<CareerCaseCardProps> = ({ data }) => {
         </Typography>
         <List>
           {data.tips.map((tip, index) => (
-            <ListItem key={index}>✅ {tip}</ListItem>
+            <ListItem key={index}>🚀 {tip}</ListItem>
           ))}
         </List>
         <Typography variant="body1" color="textSecondary">

@@ -2,11 +2,14 @@ import { useParams } from "react-router-dom";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useState } from "react";
-import { mentorsData } from "../data/mentorsData"; // Import the shared data
+import { useAtom } from "jotai";
+import { mentorsAtom } from "../atoms/jotaiAtoms";
+import { MentorForm } from "../types/types";
 
 const MentorDetailPage = () => {
   const { id } = useParams<{ id: string }>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mentors] = useAtom(mentorsAtom);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -16,11 +19,23 @@ const MentorDetailPage = () => {
     setAnchorEl(null);
   };
 
+  const handleEdit = () => {
+    // Handle edit action
+    handleClose();
+  };
+
+  const handleDelete = () => {
+    // Handle delete action
+    handleClose();
+  };
+
   if (!id) {
     return <Typography>Mentor not found</Typography>;
   }
 
-  const mentor = mentorsData.find((mentor) => mentor.id === parseInt(id));
+  const mentor = mentors.find(
+    (mentor: MentorForm) => mentor.id === parseInt(id)
+  );
 
   if (!mentor) {
     return <Typography>Mentor not found</Typography>;
@@ -52,8 +67,8 @@ const MentorDetailPage = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Edit</MenuItem>
-        <MenuItem onClick={handleClose}>Delete</MenuItem>
+        <MenuItem onClick={handleEdit}>Edit</MenuItem>
+        <MenuItem onClick={handleDelete}>Delete</MenuItem>
       </Menu>
       <Typography variant="h4" component="div" sx={{ mb: 2 }}>
         {mentor.name}

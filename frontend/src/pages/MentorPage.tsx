@@ -1,15 +1,20 @@
-import { Box, Grid, TextField, Button } from "@mui/material";
 import { useState } from "react";
+import { Box, Grid, TextField, Button, Fab } from "@mui/material";
 import { PageContainer, ComponentWrapper } from "../components/layout/common";
 import MentorCard from "../components/mentor/MentorCard";
-import { mentorsData } from "../data/mentorsData";
+import { useAtom } from "jotai";
+import { mentorsAtom } from "../atoms/jotaiAtoms";
+import { useNavigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
 
 function MentorPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredMentors, setFilteredMentors] = useState(mentorsData);
+  const [mentors] = useAtom(mentorsAtom);
+  const [filteredMentors, setFilteredMentors] = useState(mentors);
+  const navigate = useNavigate();
 
   const handleSearch = () => {
-    const filtered = mentorsData.filter(
+    const filtered = mentors.filter(
       (mentor) =>
         mentor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         mentor.techStack.some((tech) =>
@@ -22,7 +27,7 @@ function MentorPage() {
   return (
     <PageContainer>
       <ComponentWrapper>
-        {/* 검색바 */}
+        {/* Search Bar */}
         <Box sx={{ mt: 5, mb: 5, display: "flex", justifyContent: "center" }}>
           <TextField
             label="이름 또는 기술 스택으로 검색"
@@ -40,7 +45,7 @@ function MentorPage() {
           </Button>
         </Box>
 
-        {/* 멘토 카드 리스트 */}
+        {/* Mentor Card List */}
         <Grid container spacing={2}>
           {filteredMentors.map((mentor) => (
             <Grid item xs={12} sm={6} md={4} key={mentor.id}>
@@ -48,6 +53,24 @@ function MentorPage() {
             </Grid>
           ))}
         </Grid>
+
+        {/* Navigation Button */}
+        <Fab
+          color="primary"
+          aria-label="add"
+          sx={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            bgcolor: "black",
+            color: "white",
+          }}
+          onClick={() => {
+            navigate("/mentor_add");
+          }}
+        >
+          <AddIcon />
+        </Fab>
       </ComponentWrapper>
     </PageContainer>
   );

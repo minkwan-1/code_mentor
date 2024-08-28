@@ -10,6 +10,7 @@ function NavButton({ label, to }: NavButtonProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
+    window.scrollTo(0, 0);
     navigate(to);
   };
 
