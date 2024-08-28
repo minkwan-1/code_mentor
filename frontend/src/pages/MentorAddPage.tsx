@@ -9,8 +9,8 @@ import {
   useTheme,
 } from "@mui/material";
 import { PageContainer, ComponentWrapper } from "../components/layout/common";
-import { useAtom } from "jotai";
-import { mentorsAtom } from "../atoms/jotaiAtoms";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 interface MentorForm {
   name: string;
@@ -46,8 +46,8 @@ const techStackOptions = [
 
 function MentorAddPage() {
   const [formData, setFormData] = useState<MentorForm>(initialFormState);
-  const [mentors, setMentors] = useAtom(mentorsAtom);
   const theme = useTheme();
+  const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -58,19 +58,19 @@ function MentorAddPage() {
     event: React.SyntheticEvent,
     newValue: string[]
   ) => {
-    setFormData({
-      ...formData,
-      techStack: newValue,
-    });
+    setFormData({ ...formData, techStack: newValue });
   };
 
-  const handleSubmit = () => {
-    setMentors([...mentors, { id: Date.now(), ...formData }]);
-    setFormData(initialFormState); // Reset the form
-    console.log("멘토 추가 데이터:", formData);
-    // Optionally navigate back or show a success message
+  const handleSubmit = async () => {
+    try {
+      await axios.post("http://localhost:5000/api/mentors", formData);
+      setFormData(initialFormState); // Reset the form
+      navigate("/mentor");
+    } catch (error) {
+      console.error("There was an error adding the mentor!", error);
+    }
   };
-  console.log(mentors);
+
   return (
     <PageContainer
       sx={{
@@ -100,7 +100,6 @@ function MentorAddPage() {
             mt: 3,
           }}
         >
-          {/* Name */}
           <TextField
             label="성함"
             placeholder="예)홍길동"
@@ -115,7 +114,6 @@ function MentorAddPage() {
             }}
           />
 
-          {/* Experience */}
           <TextField
             label="경력"
             placeholder="예)6년 이상의 시스템 아키텍처 경험"
@@ -130,7 +128,6 @@ function MentorAddPage() {
             }}
           />
 
-          {/* Tech Stack */}
           <Autocomplete
             multiple
             options={techStackOptions}
@@ -159,7 +156,6 @@ function MentorAddPage() {
             }
           />
 
-          {/* Description */}
           <TextField
             label="간단한 소개"
             placeholder="예)대규모 시스템 설계와 클라우드 서비스 구축에 전문성을 갖추고 있습니다."
@@ -176,7 +172,6 @@ function MentorAddPage() {
             }}
           />
 
-          {/* Submit Button */}
           <Button
             variant="contained"
             onClick={handleSubmit}

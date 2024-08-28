@@ -1,13 +1,14 @@
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
 import { Box, Typography, IconButton, Menu, MenuItem } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { useAtom } from "jotai";
 import { mentorsAtom } from "../atoms/jotaiAtoms";
 import { MentorForm } from "../types/types";
 
 const MentorDetailPage = () => {
-  const { id } = useParams<{ id: string }>();
+  // useParams의 반환 타입을 문자열로 설정합니다.
+  const { id } = useParams<{ id: string }>(); // id를 문자열로 받아옵니다.
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mentors] = useAtom(mentorsAtom);
 
@@ -20,7 +21,7 @@ const MentorDetailPage = () => {
   };
 
   const handleEdit = () => {
-    // Handle edit action
+    // Handle edit action (e.g., navigate to an edit page)
     handleClose();
   };
 
@@ -33,8 +34,9 @@ const MentorDetailPage = () => {
     return <Typography>Mentor not found</Typography>;
   }
 
+  // id를 문자열에서 숫자로 변환하여 비교합니다.
   const mentor = mentors.find(
-    (mentor: MentorForm) => mentor.id === parseInt(id)
+    (mentor: MentorForm) => mentor._id === id // 문자열을 직접 비교
   );
 
   if (!mentor) {

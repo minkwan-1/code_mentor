@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   CardContent,
@@ -12,7 +12,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useNavigate } from "react-router-dom";
 
 interface MentorCardProps {
-  id: number;
+  _id: string; // _id를 문자열로 변경합니다.
   name: string;
   techStack: string[];
   experience: string;
@@ -20,14 +20,14 @@ interface MentorCardProps {
 }
 
 const MentorCard = ({
-  id,
+  _id,
   name,
   techStack,
   experience,
   description,
 }: MentorCardProps) => {
   const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -38,7 +38,7 @@ const MentorCard = ({
   };
 
   const handleViewProfile = () => {
-    navigate(`/mentor/${id}`);
+    navigate(`/mentor/${_id}`); // 문자열을 사용하여 네비게이션
     handleClose();
   };
 

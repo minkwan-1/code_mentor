@@ -1,17 +1,36 @@
-import { useState } from "react";
 import { Box, Grid, TextField, Button, Fab } from "@mui/material";
+import { useState, useEffect } from "react";
 import { PageContainer, ComponentWrapper } from "../components/layout/common";
 import MentorCard from "../components/mentor/MentorCard";
 import { useAtom } from "jotai";
 import { mentorsAtom } from "../atoms/jotaiAtoms";
 import { useNavigate } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
+import { MentorForm } from "../types/types";
 
 function MentorPage() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [mentors] = useAtom(mentorsAtom);
-  const [filteredMentors, setFilteredMentors] = useState(mentors);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [mentors, setMentors] = useAtom(mentorsAtom); // Use Jotai atom
+  const [filteredMentors, setFilteredMentors] = useState<MentorForm[]>([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Here you should fetch mentors data from an API and set it to the atom
+    const fetchMentors = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/mentors");
+        const data: MentorForm[] = await response.json();
+        setMentors(data);
+      } catch (error) {
+        console.error("There was an error fetching the mentors!", error);
+      }
+    };
+    fetchMentors();
+  }, [setMentors]);
+
+  useEffect(() => {
+    handleSearch(); // Re-run search whenever mentors data changes
+  }, [mentors, searchTerm]);
 
   const handleSearch = () => {
     const filtered = mentors.filter(
@@ -23,11 +42,12 @@ function MentorPage() {
     );
     setFilteredMentors(filtered);
   };
+  console.log(mentors);
 
   return (
     <PageContainer>
       <ComponentWrapper>
-        {/* Search Bar */}
+        {/* 검색바 */}
         <Box sx={{ mt: 5, mb: 5, display: "flex", justifyContent: "center" }}>
           <TextField
             label="이름 또는 기술 스택으로 검색"
@@ -45,16 +65,16 @@ function MentorPage() {
           </Button>
         </Box>
 
-        {/* Mentor Card List */}
+        {/* 멘토 카드 리스트 */}
         <Grid container spacing={2}>
           {filteredMentors.map((mentor) => (
-            <Grid item xs={12} sm={6} md={4} key={mentor.id}>
+            <Grid item xs={12} sm={6} md={4} key={mentor._id}>
               <MentorCard {...mentor} />
             </Grid>
           ))}
         </Grid>
 
-        {/* Navigation Button */}
+        {/* 우측 하단 네비게이션 버튼 */}
         <Fab
           color="primary"
           aria-label="add"
